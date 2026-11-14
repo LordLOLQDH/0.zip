@@ -1,56 +1,62 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f6f8">
-  <meta name="description" content="0.zip ist ein verschachteltes ZIP-Experiment. Auf der untersten Ebene liegen Textdateien, die ausschließlich aus Nullen bestehen.">
-  <title>0.zip — Das Archiv aus Nullen</title>
-  <style>
-    :root{color-scheme:light;--bg:#f5f6f8;--surface:#fff;--ink:#17191f;--muted:#687080;--line:#e5e8ee;--blue:#315efb;--blue-dark:#244bd4;--warning-bg:#fff8e8;--warning-line:#f1d69a;--warning-ink:#76500b;--shadow:0 18px 55px rgba(25,35,60,.08)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit}.wrap{width:min(1080px,calc(100% - 40px));margin:0 auto}
-    header{height:78px;display:flex;align-items:center;border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between;width:100%}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:750;letter-spacing:-.04em}.brand-mark{width:36px;height:36px;border-radius:11px;background:var(--ink);color:white;display:grid;place-items:center;font-size:15px}.nav-note{color:var(--muted);font-size:13px}
-    main{padding:76px 0 88px}.hero{max-width:760px;margin:0 auto 42px;text-align:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--muted);font-size:12px;font-weight:650;letter-spacing:.08em;text-transform:uppercase}.dot{width:7px;height:7px;border-radius:50%;background:#315efb}
-    h1{margin:22px 0 12px;font-size:clamp(52px,9vw,88px);line-height:.98;letter-spacing:-.085em;font-weight:800}.hero p{margin:0 auto;max-width:600px;color:var(--muted);font-size:18px}
-    .panel{max-width:780px;margin:0 auto;padding:30px;background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}.warning{display:flex;gap:14px;padding:17px 18px;border:1px solid var(--warning-line);border-radius:14px;background:var(--warning-bg);color:var(--warning-ink)}.warning-icon{flex:0 0 28px;width:28px;height:28px;border:1.5px solid currentColor;border-radius:50%;display:grid;place-items:center;font-weight:800}.warning strong{display:block;margin-bottom:2px}.warning p{margin:0;font-size:14px}
-    .file{display:flex;align-items:center;gap:16px;padding:25px 2px 22px}.file-icon{width:54px;height:60px;flex:0 0 54px;display:grid;place-items:center;background:#eef1ff;color:var(--blue);border-radius:12px;font-size:14px;font-weight:800}.file-name{font-size:19px;font-weight:750;letter-spacing:-.03em}.file-meta{color:var(--muted);font-size:13px;margin-top:2px}.download{display:flex;justify-content:center;align-items:center;gap:10px;width:100%;min-height:54px;border-radius:12px;background:var(--blue);color:white;text-decoration:none;font-weight:700;transition:background .18s,transform .18s}.download:hover{background:var(--blue-dark);transform:translateY(-1px)}.download:focus-visible,a:focus-visible{outline:3px solid #9aafff;outline-offset:3px}.source-link{display:block;text-align:center;margin-top:13px;color:var(--muted);font-size:13px;text-decoration-thickness:1px;text-underline-offset:3px}
-    .about{max-width:780px;margin:54px auto 0}.about h2{margin:0 0 10px;font-size:23px;letter-spacing:-.04em}.about p{margin:0;color:var(--muted)}.layers{max-width:780px;margin:28px auto 0;padding:26px;background:var(--surface);border:1px solid var(--line);border-radius:18px}.layers h2{margin:0 0 7px;font-size:22px;letter-spacing:-.04em}.layers-intro{margin:0 0 20px;color:var(--muted)}.stack{display:grid;gap:9px}.layer{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:11px;background:#fafbfc}.layer:nth-child(2){margin-left:18px}.layer:nth-child(3){margin-left:36px}.layer:last-child{margin-left:54px;background:#f0f3ff;border-color:#dce3ff}.layer-number{display:grid;place-items:center;width:28px;height:28px;flex:0 0 28px;border-radius:8px;background:#e9edf5;color:#38445b;font-size:12px;font-weight:750}.layer:last-child .layer-number{background:#dfe6ff;color:var(--blue)}.layer strong{display:block;font-size:14px}.layer small{display:block;color:var(--muted);font-size:12px}.zero-sample{margin:14px 0 0 54px;padding:13px 15px;border-radius:10px;background:#17191f;color:#dce5ff;font:13px/1.8 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}
-    footer{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font-size:13px}.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    @media(max-width:600px){header{height:66px}.nav-note{font-size:11px}main{padding:55px 0 65px}.hero{margin-bottom:30px}.hero p{font-size:16px}.panel{padding:19px;border-radius:17px}.warning{padding:14px}.layers{padding:19px}.layer:nth-child(2){margin-left:10px}.layer:nth-child(3){margin-left:20px}.layer:last-child{margin-left:30px}.zero-sample{margin-left:30px}.about{margin-top:42px}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f2f3ed">
+<meta name="description" content="0.zip: Ein verschachteltes ZIP-Archiv, dessen unterste Ebene aus Textdateien voller Nullen besteht.">
+<title>0.zip — Nothing but zeroes</title>
+<style>
+:root{color-scheme:light;--paper:#f2f3ed;--white:#fbfcf8;--ink:#171b18;--muted:#68716b;--line:#cbd2ca;--green:#176b48;--mint:#b9f1d0;--soft:#e4e9df}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}a{color:inherit}.shell{width:min(1180px,calc(100% - 64px));margin:auto}
+.topbar{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center}.topbar-inner{display:flex;align-items:center;justify-content:space-between}.wordmark{font-weight:900;letter-spacing:-.07em;font-size:20px;text-decoration:none}.wordmark span{color:var(--green)}.top-meta{font:11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+main{padding:58px 0 100px}.intro{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,.7fr);gap:42px;align-items:end;padding-bottom:48px;border-bottom:1px solid var(--ink)}.kicker{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.13em;text-transform:uppercase;color:var(--green)}h1{font-size:clamp(100px,21vw,250px);line-height:.72;letter-spacing:-.12em;margin:32px 0 20px;font-weight:900}h1 span{color:var(--green)}.subtitle{font-size:clamp(19px,2.5vw,27px);line-height:1.18;max-width:650px;letter-spacing:-.04em;margin:0}.intro-aside{border-left:1px solid var(--line);padding:5px 0 4px 22px;color:var(--muted);font-size:14px;line-height:1.6}.intro-aside strong{display:block;color:var(--ink);font:700 11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.content-grid{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:70px;padding-top:54px}.section-label{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:20px}.explain h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.07em;line-height:1;margin:0 0 20px;max-width:650px}.explain>p{max-width:650px;color:#4d5750;font-size:16px;line-height:1.75;margin:0}
+.layers{margin-top:42px;border-top:1px solid var(--line)}.layer{display:grid;grid-template-columns:48px 1fr auto;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}.layer-num{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--green)}.layer-name{font-weight:750;letter-spacing:-.02em}.layer-desc{font-size:12px;color:var(--muted);text-align:right}.layer.final{background:var(--mint);margin:0 -14px;padding:16px 14px;border:0}.zero-line{margin-top:18px;padding:20px;background:var(--ink);color:var(--mint);font:13px/1.8 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}
+.download-side{align-self:start;position:sticky;top:24px}.download-panel{background:var(--white);border:1px solid var(--line);padding:23px}.file-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:18px}.file-type{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;color:var(--green)}.file-size{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted)}.file-title{font-size:25px;font-weight:900;letter-spacing:-.06em}.file-note{font-size:13px;color:var(--muted);margin:5px 0 22px}.download{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 17px;background:var(--green);color:#fff;text-decoration:none;font-weight:750;transition:background .15s}.download:hover{background:#0e5135}.download .arrow{font-size:22px;line-height:1}.repo{display:block;margin-top:14px;font-size:12px;color:var(--muted);text-underline-offset:3px}.warning{margin-top:18px;padding:14px;border-left:3px solid #6d755f;background:var(--soft);font-size:12px;line-height:1.6;color:#465047}.warning strong{display:block;color:var(--ink);margin-bottom:5px;font:700 10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase}
+.bottom{margin-top:82px;padding-top:24px;border-top:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:40px}.bottom h2{font-size:25px;letter-spacing:-.05em;margin:0 0 10px}.bottom p{font-size:13px;line-height:1.7;color:var(--muted);max-width:520px;margin:0}
+footer{border-top:1px solid var(--line);padding:20px 0 26px;font:11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted);letter-spacing:.04em}.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+a:focus-visible{outline:3px solid var(--green);outline-offset:4px}
+@media(max-width:800px){.shell{width:min(100% - 36px,620px)}.intro{grid-template-columns:1fr;gap:24px}.intro-aside{border-left:0;border-top:1px solid var(--line);padding:16px 0 0;max-width:480px}.content-grid{grid-template-columns:1fr;gap:38px}.download-side{position:static;grid-row:1}.explain{grid-row:2}.bottom{grid-template-columns:1fr;gap:28px}}
+@media(max-width:480px){.shell{width:calc(100% - 32px)}.topbar{height:62px}.top-meta{font-size:9px}.topbar .shell{width:calc(100% - 32px)}main{padding-top:44px}.intro{padding-bottom:32px}h1{font-size:clamp(100px,35vw,165px);margin:28px 0 18px}.subtitle{font-size:20px}.content-grid{padding-top:30px}.layer{grid-template-columns:28px 1fr;gap:8px}.layer-desc{grid-column:2;text-align:left}.layer.final{margin:0 -9px;padding:14px 9px}.zero-line{font-size:11px;padding:14px}.bottom{margin-top:54px}}
+</style>
 </head>
 <body>
-  <header><div class="wrap nav"><a class="brand" href="#" aria-label="0.zip Startseite"><span class="brand-mark">0.</span><span>0.zip</span></a><span class="nav-note">Ein verschachteltes Datei-Experiment</span></div></header>
-  <main class="wrap">
-    <section class="hero">
-      <span class="eyebrow"><span class="dot"></span> ZIP-Experiment</span>
-      <h1>0.zip</h1>
-      <p>Ein Archiv. Darin weitere Archive. Und ganz unten? Textdateien, die nur aus Nullen bestehen.</p>
-    </section>
-    <section class="panel" aria-label="Download">
-      <div class="warning" role="note"><span class="warning-icon" aria-hidden="true">!</span><div><strong>Hinweis vor dem Download</strong><p>Das Archiv ist passwortgeschützt und enthält mehrere verschachtelte Ebenen. Der Inhalt wurde nicht unabhängig auf Sicherheit geprüft. Entpacke Dateien nur, wenn du der Quelle vertraust, und verwende aktuelle Sicherheitssoftware.</p></div></div>
-      <div class="file"><div class="file-icon" aria-hidden="true">ZIP</div><div><div class="file-name">0.zip</div><div class="file-meta">ZIP-Archiv · passwortgeschützt</div></div></div>
-      <a class="download" href="https://github.com/LordLOLQDH/0.zip/raw/refs/heads/main/0.zip" download><span aria-hidden="true">↓</span> 0.zip herunterladen</a>
-      <a class="source-link" href="https://github.com/LordLOLQDH/0.zip">Repository auf GitHub ansehen</a>
-    </section>
-    <section class="layers" aria-label="Aufbau des Archivs">
-      <h2>Was steckt in 0.zip?</h2>
-      <p class="layers-intro">Das Prinzip ist simpel: Jede Ebene führt tiefer in das Archiv hinein. Die unterste Ebene ist das eigentliche Ziel.</p>
-      <div class="stack">
-        <div class="layer"><span class="layer-number">1</span><div><strong>0.zip</strong><small>Das äußere Archiv</small></div></div>
-        <div class="layer"><span class="layer-number">2</span><div><strong>Weiteres ZIP-Archiv</strong><small>Die nächste verschachtelte Ebene</small></div></div>
-        <div class="layer"><span class="layer-number">…</span><div><strong>Weitere Archive</strong><small>Mehrere Ebenen hintereinander</small></div></div>
-        <div class="layer"><span class="layer-number">0</span><div><strong>Textdateien aus Nullen</strong><small>Die unterste Ebene: nur das Zeichen 0</small></div></div>
-      </div>
-      <div class="zero-sample" aria-label="Beispiel für den Inhalt einer Textdatei">0000000000000000000000000000000000000000000000000000000000000000</div>
-    </section>
-    <section class="about">
-      <h2>Warum „0.zip“?</h2>
-      <p>Der Name kommt vom Inhalt der untersten Ebene: Die dortigen Textdateien bestehen ausschließlich aus Nullen. Das Archiv ist also eine kleine Reise durch mehrere ZIP-Ebenen bis zum Ursprung des Namens.</p>
-      <h2 style="margin-top:26px">Sicherheit und Nutzung</h2>
-      <p>Der Download wird direkt über GitHub bereitgestellt. Die Beschreibung erklärt den Aufbau des Projekts, ist aber keine Sicherheitsprüfung. Prüfe heruntergeladene Dateien und öffne nichts, dessen Herkunft du nicht kennst.</p>
-    </section>
-  </main>
-  <footer><div class="wrap footer-inner"><span>© 2026 · 0.zip</span><span>Bereitgestellt über GitHub</span></div></footer>
+<header class="topbar"><div class="shell topbar-inner"><a class="wordmark" href="#">0<span>.</span>zip</a><div class="top-meta">DIGITAL OBJECT / 001</div></div></header>
+<main class="shell">
+<section class="intro">
+  <div><div class="kicker">Ein kleines Archiv-Experiment</div><h1>0<span>.</span></h1><p class="subtitle">Ein Archiv im Archiv im Archiv. Bis am Ende nur noch Nullen übrig sind.</p></div>
+  <aside class="intro-aside"><strong>Worum geht's?</strong>0.zip ist ein verschachteltes ZIP-Archiv. Jede Ebene enthält die nächste. Ganz unten warten Textdateien, die ausschließlich aus dem Zeichen <b>0</b> bestehen.</aside>
+</section>
+<section class="content-grid">
+  <article class="explain">
+    <div class="section-label">01 / Der Aufbau</div>
+    <h2>Immer eine Ebene tiefer.</h2>
+    <p>Das Prinzip ist bewusst einfach: Archive enthalten weitere Archive. Entpackt man sich Schritt für Schritt hindurch, erreicht man schließlich die unterste Ebene. Dort besteht der Inhalt aus schlichten Textdateien voller Nullen. Genau daher kommt der Name.</p>
+    <div class="layers" aria-label="Schematischer Aufbau des Archivs">
+      <div class="layer"><span class="layer-num">01</span><span class="layer-name">0.zip</span><span class="layer-desc">Äußeres Archiv</span></div>
+      <div class="layer"><span class="layer-num">02</span><span class="layer-name">ZIP in ZIP</span><span class="layer-desc">Nächste Ebene</span></div>
+      <div class="layer"><span class="layer-num">…</span><span class="layer-name">Weitere Archive</span><span class="layer-desc">Immer weiter</span></div>
+      <div class="layer final"><span class="layer-num">00</span><span class="layer-name">Textdateien aus Nullen</span><span class="layer-desc">Ganz unten</span></div>
+    </div>
+    <div class="zero-line">0000000000000000000000000000000000000000000000000000000000000000</div>
+  </article>
+  <aside class="download-side">
+    <div class="download-panel">
+      <div class="file-top"><span class="file-type">DATEI / ZIP</span><span class="file-size">PASSWORTGESCHÜTZT</span></div>
+      <div class="file-title">0.zip</div>
+      <div class="file-note">Das verschachtelte Archiv. Direkt von GitHub.</div>
+      <a class="download" href="https://github.com/LordLOLQDH/0.zip/raw/refs/heads/main/0.zip" download><span>Archiv herunterladen</span><span class="arrow">↓</span></a>
+      <a class="repo" href="https://github.com/LordLOLQDH/0.zip">Quellprojekt auf GitHub ↗</a>
+    </div>
+    <div class="warning"><strong>Hinweis / Sicherheit</strong>Das Archiv ist passwortgeschützt. Der beschriebene Aufbau ist keine unabhängige Sicherheitsprüfung. Entpacke Dateien nur, wenn du der Quelle vertraust, und prüfe Downloads mit aktueller Sicherheitssoftware.</div>
+  </aside>
+</section>
+<section class="bottom">
+  <div><div class="section-label">02 / Der Name</div><h2>Warum eine Null?</h2><p>Weil die unterste Ebene aus Textdateien besteht, deren Inhalt nur aus Nullen besteht. Keine komplizierte Geschichte. Eine kleine Idee, konsequent verschachtelt.</p></div>
+  <div><div class="section-label">03 / Technische Notiz</div><h2>Einfach ein Archiv.</h2><p>Die Seite stellt die Datei bereit und erklärt das Konzept. Sie verspricht weder, dass das Archiv ungefährlich ist, noch ersetzt sie eine Prüfung der heruntergeladenen Dateien.</p></div>
+</section>
+</main>
+<footer><div class="shell footer-inner"><span>0.ZIP — DIGITAL OBJECT 001</span><span>© 2026</span></div></footer>
 </body>
 </html>
