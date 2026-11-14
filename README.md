@@ -6,18 +6,28 @@ Das Archiv besteht aus mehreren ineinander verschachtelten ZIP-Ebenen. Wenn man 
 
 Der Name **0.zip** bezieht sich also auf den Inhalt ganz unten im Archiv.
 
+## So öffnest du das Archiv
+
+1. Lade [0.zip](https://github.com/LordLOLQDH/0.zip/raw/refs/heads/main/0.zip) herunter.
+2. Entpacke die äußere ZIP-Datei.
+3. Gib als Passwort **`0`** ein.
+4. Im entpackten Ordner findest du die eigentliche ZIP-Datei.
+5. Diese innere ZIP-Datei enthält die verschachtelten Archive, die bis zu den Textdateien aus Nullen führen.
+
+**Wichtig:** Die äußerste ZIP-Datei ist nur eine passwortgeschützte Hülle. Sie enthält die eigentliche ZIP-Datei. Sie startet kein Programm, führt keine Befehle aus und verändert nicht selbstständig etwas am Computer. Das Passwort `0` gilt für diese äußere ZIP-Datei.
+
 ## Aufbau
 
 ```text
-0.zip
-└── weiteres ZIP-Archiv
+0.zip                  ← äußere Hülle, Passwort: 0
+└── eigentliche ZIP
     └── weitere verschachtelte Archive
         └── ...
             └── Textdateien
                 └── 000000000000000000000000...
 ```
 
-Die Darstellung ist schematisch. Die genaue Anzahl der Ebenen wird hier bewusst nicht angegeben.
+Die Darstellung ist schematisch. Die genaue Anzahl der inneren Ebenen wird hier bewusst nicht angegeben.
 
 ## Website
 
@@ -29,6 +39,6 @@ Die Projektwebsite liegt in [index.html](./index.html). Sie kann über GitHub Pa
 
 ## Sicherheitshinweis
 
-Das Archiv ist passwortgeschützt. Die Beschreibung oben erklärt das beabsichtigte Konzept, ersetzt aber keine unabhängige Prüfung der tatsächlichen Dateien. Entpacke Archive nur aus Quellen, denen du vertraust, und prüfe Downloads mit aktueller Sicherheitssoftware.
+Die äußere ZIP-Datei dient als passwortgeschützte Hülle. Das bedeutet nicht automatisch, dass jede Datei im inneren Archiv sicher ist. Prüfe die innere ZIP-Datei und ihre Inhalte, bevor du sie weiter entpackst oder verwendest.
 
 © 2026 Adam Kraus
